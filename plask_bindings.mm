@@ -42,6 +42,7 @@
 #include <Foundation/NSObjCRuntime.h>
 #include <objc/runtime.h>
 
+#define SK_RELEASE 1  // Hmmmm, really? SkPreConfig is thinking we are debug.
 #include "third_party/skia/include/core/SkBitmap.h"
 #include "third_party/skia/include/core/SkCanvas.h"
 #include "third_party/skia/include/core/SkColorPriv.h"  // For color ordering.
@@ -3757,9 +3758,10 @@ class SkPathWrapper {
       { "rLineTo", &SkPathWrapper::rLineTo },
       { "quadTo", &SkPathWrapper::quadTo },
       { "cubicTo", &SkPathWrapper::cubicTo },
-      // NOTE(deanm): The arcTo() version that acts like postscript arct
-      // doesn't really seem that useful.  For now we just expose the sweep one.
       { "arcTo", &SkPathWrapper::arcTo },
+      { "arct", &SkPathWrapper::arct },
+      { "addRect", &SkPathWrapper::addRect },
+      { "addOval", &SkPathWrapper::addOval },
       { "addCircle", &SkPathWrapper::addCircle },
       { "close", &SkPathWrapper::close },
       { "offset", &SkPathWrapper::offset },
@@ -3860,7 +3862,43 @@ class SkPathWrapper {
                     SkDoubleToScalar(args[3]->NumberValue()) };
     path->arcTo(rect,
                 SkDoubleToScalar(args[4]->NumberValue()),
-                SkDoubleToScalar(args[5]->NumberValue()), false);
+                SkDoubleToScalar(args[5]->NumberValue()),
+                args[6]->BooleanValue());
+    return v8::Undefined();
+  }
+
+  static v8::Handle<v8::Value> arct(const v8::Arguments& args) {
+    SkPath* path = ExtractPointer(args.Holder());
+
+    path->arcTo(SkDoubleToScalar(args[0]->NumberValue()),
+                SkDoubleToScalar(args[1]->NumberValue()),
+                SkDoubleToScalar(args[2]->NumberValue()),
+                SkDoubleToScalar(args[3]->NumberValue()),
+                SkDoubleToScalar(args[4]->NumberValue()));
+    return v8::Undefined();
+  }
+
+  static v8::Handle<v8::Value> addRect(const v8::Arguments& args) {
+    SkPath* path = ExtractPointer(args.Holder());
+
+    path->addRect(SkDoubleToScalar(args[0]->NumberValue()),
+                  SkDoubleToScalar(args[1]->NumberValue()),
+                  SkDoubleToScalar(args[2]->NumberValue()),
+                  SkDoubleToScalar(args[3]->NumberValue()),
+                  args[4]->BooleanValue() ? SkPath::kCCW_Direction :
+                                            SkPath::kCW_Direction);
+    return v8::Undefined();
+  }
+
+  static v8::Handle<v8::Value> addOval(const v8::Arguments& args) {
+    SkPath* path = ExtractPointer(args.Holder());
+
+    SkRect rect = { SkDoubleToScalar(args[0]->NumberValue()),
+                    SkDoubleToScalar(args[1]->NumberValue()),
+                    SkDoubleToScalar(args[2]->NumberValue()),
+                    SkDoubleToScalar(args[3]->NumberValue()) };
+    path->addOval(rect, args[4]->BooleanValue() ? SkPath::kCCW_Direction :
+                                                  SkPath::kCW_Direction);
     return v8::Undefined();
   }
 
@@ -3868,8 +3906,10 @@ class SkPathWrapper {
     SkPath* path = ExtractPointer(args.Holder());
 
     path->addCircle(SkDoubleToScalar(args[0]->NumberValue()),
-                  SkDoubleToScalar(args[1]->NumberValue()),
-                  SkDoubleToScalar(args[2]->NumberValue()));
+                    SkDoubleToScalar(args[1]->NumberValue()),
+                    SkDoubleToScalar(args[2]->NumberValue()),
+                    args[3]->BooleanValue() ? SkPath::kCCW_Direction :
+                                              SkPath::kCW_Direction);
     return v8::Undefined();
   }
 
@@ -4439,6 +4479,8 @@ class SkCanvasWrapper {
       { "drawRoundRect", &SkCanvasWrapper::drawRoundRect },
       { "drawText", &SkCanvasWrapper::drawText },
       { "drawTextOnPathHV", &SkCanvasWrapper::drawTextOnPathHV },
+      { "concatMatrix", &SkCanvasWrapper::concatMatrix },
+      { "setMatrix", &SkCanvasWrapper::setMatrix },
       { "resetMatrix", &SkCanvasWrapper::resetMatrix },
       { "translate", &SkCanvasWrapper::translate },
       { "scale", &SkCanvasWrapper::scale },
@@ -4638,6 +4680,37 @@ class SkCanvasWrapper {
     persistent.MakeWeak(NULL, &SkCanvasWrapper::WeakCallback);
 
     return args.This();
+  }
+
+  static v8::Handle<v8::Value> concatMatrix(const v8::Arguments& args) {
+    SkCanvas* canvas = ExtractPointer(args.Holder());
+    SkMatrix matrix;
+    matrix.setAll(SkDoubleToScalar(args[0]->NumberValue()),
+                  SkDoubleToScalar(args[1]->NumberValue()),
+                  SkDoubleToScalar(args[2]->NumberValue()),
+                  SkDoubleToScalar(args[3]->NumberValue()),
+                  SkDoubleToScalar(args[4]->NumberValue()),
+                  SkDoubleToScalar(args[5]->NumberValue()),
+                  SkDoubleToScalar(args[6]->NumberValue()),
+                  SkDoubleToScalar(args[7]->NumberValue()),
+                  SkDoubleToScalar(args[8]->NumberValue()));
+    return v8::Boolean::New(canvas->concat(matrix));
+  }
+
+  static v8::Handle<v8::Value> setMatrix(const v8::Arguments& args) {
+    SkCanvas* canvas = ExtractPointer(args.Holder());
+    SkMatrix matrix;
+    matrix.setAll(SkDoubleToScalar(args[0]->NumberValue()),
+                  SkDoubleToScalar(args[1]->NumberValue()),
+                  SkDoubleToScalar(args[2]->NumberValue()),
+                  SkDoubleToScalar(args[3]->NumberValue()),
+                  SkDoubleToScalar(args[4]->NumberValue()),
+                  SkDoubleToScalar(args[5]->NumberValue()),
+                  SkDoubleToScalar(args[6]->NumberValue()),
+                  SkDoubleToScalar(args[7]->NumberValue()),
+                  SkDoubleToScalar(args[8]->NumberValue()));
+    canvas->setMatrix(matrix);
+    return v8::Undefined();
   }
 
   static v8::Handle<v8::Value> resetMatrix(const v8::Arguments& args) {
