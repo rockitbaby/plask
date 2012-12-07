@@ -40,7 +40,6 @@ static void PumpNode() {
     // ev_loop(EV_DEFAULT_UC_ EVLOOP_NONBLOCK);
   // }
   //NSLog(@"All fine %@", @"now");
-  NSLog(@"All fine %i", loop->active_handles);
 }
 
 static void KqueueCallback(CFFileDescriptorRef backend_cffd,

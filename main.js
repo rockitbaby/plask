@@ -12,7 +12,7 @@ plask.simpleWindow({
     paint.setFill();  // Fill is the default, so this is just for clarity.
     paint.setAntiAlias(true);
     paint.setColor(80, 0, 0, 255);
-	this.setTitle(process.version);
+	this.setTitle("Node Version" + process.version);
 	//console.log('Version: ' + process.version);
   },
 
