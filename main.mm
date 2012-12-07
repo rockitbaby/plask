@@ -28,16 +28,19 @@
 #include "v8.h"
 #define EV_MULTIPLICITY 0
 #include "node.h"
-#include "ev.h"
+#include "uv.h"
 
 static void TimerFired(CFRunLoopTimerRef timer, void* info);
-
+uv_loop_t* loop;
 static void PumpNode() {
-  ev_now_update();  // Bring the clock forward since the last ev_loop().
-  ev_loop(EV_DEFAULT_UC_ EVLOOP_NONBLOCK);
-  while(ev_backend_changecount() != 0) {
-    ev_loop(EV_DEFAULT_UC_ EVLOOP_NONBLOCK);
-  }
+  //ev_now_update();  // Bring the clock forward since the last uv_loop().
+  uv_run_once(loop);
+  //ev_loop(EV_DEFAULT_UC_ EVLOOP_NONBLOCK);
+ // while(ev_backend_changecount() != 0) {
+    // ev_loop(EV_DEFAULT_UC_ EVLOOP_NONBLOCK);
+  // }
+  //NSLog(@"All fine %@", @"now");
+  NSLog(@"All fine %i", loop->active_handles);
 }
 
 static void KqueueCallback(CFFileDescriptorRef backend_cffd,
@@ -52,11 +55,10 @@ static void RunMainLoop() {
   // Avoids failing on test/simple/test-eio-race3.js though
   // ev_idle_start(EV_DEFAULT_UC_ &eio_poller);
 
+  loop = uv_default_loop();
+
   // Make sure the kqueue is initialized and the kernel state is up to date.
-  PumpNode();
-
-  int backend_fd = ev_backend_fd();
-
+  int backend_fd = loop->backend_fd;
   CFFileDescriptorRef backend_cffd =
       CFFileDescriptorCreate(NULL, backend_fd, true, &KqueueCallback, NULL);
   CFRunLoopSourceRef backend_rlsr =
@@ -67,6 +69,8 @@ static void RunMainLoop() {
   CFRelease(backend_rlsr);
   CFFileDescriptorEnableCallBacks(backend_cffd, kCFFileDescriptorReadCallBack);
 
+  PumpNode();
+  
   [NSApp finishLaunching];
 
   [NSApp activateIgnoringOtherApps:YES];  // TODO(deanm): Do we want this?
@@ -75,9 +79,9 @@ static void RunMainLoop() {
   while (true) {
     NSAutoreleasePool* pool = [NSAutoreleasePool new];
     PumpNode();
-    double next_waittime = ev_next_waittime();
+    //double next_waittime = ev_next_waittime();
     // TODO(deanm): Fix loop integration with newest version of Node.
-    next_waittime = 0.01;
+    double next_waittime = 0.01;
     NSDate* next_date = [NSDate dateWithTimeIntervalSinceNow:next_waittime];
     // printf("Running a loop iteration with timeout %f\n", next_waittime);
     NSEvent* event = [NSApp nextEventMatchingMask:NSAnyEventMask
@@ -106,6 +110,7 @@ int main(int argc, char** argv) {
   plaskAppDelegate* app_delegate = [[plaskAppDelegate alloc] init];
   [NSApp setDelegate:app_delegate];
 
+
   char* bundled_argv[] = {argv[0], NULL};
   NSString* bundled_main_js =
       [[NSBundle mainBundle] pathForResource:@"main" ofType:@"js"];
@@ -115,6 +120,8 @@ int main(int argc, char** argv) {
     argv = bundled_argv;
     NSLog(@"loading from bundled: %@", bundled_main_js);
   }
+  NSLog(@"All fine %i", argc);
+  
 
   argv = node::Init(argc, argv);
   v8::V8::Initialize();
@@ -143,6 +150,7 @@ int main(int argc, char** argv) {
   context.Dispose();
   v8::V8::Dispose();
 #endif  // NDEBUG
+  
   
   [pool release];
   return 0;

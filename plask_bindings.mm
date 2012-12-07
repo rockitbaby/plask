@@ -29,7 +29,7 @@
 #include <netdb.h>
 
 #include "v8_utils.h"
-#include "v8_typed_array.h"
+#include "v8_typed_array_my.h"
 
 #include "FreeImage.h"
 
@@ -1429,7 +1429,7 @@ class NSOpenGLContextWrapper {
       v8::Local<v8::Object> obj = v8::Local<v8::Object>::Cast(args[1]);
       if (!obj->HasIndexedPropertiesInExternalArrayData())
         return v8_utils::ThrowError("Data must be an ArrayBuffer.");
-      int element_size = v8_typed_array::SizeOfArrayElementForType(
+      int element_size = v8_typed_array_my::SizeOfArrayElementForType(
           obj->GetIndexedPropertiesExternalArrayDataType());
       size = obj->GetIndexedPropertiesExternalArrayDataLength() * element_size;
       data = obj->GetIndexedPropertiesExternalArrayData();
@@ -1456,7 +1456,7 @@ class NSOpenGLContextWrapper {
       v8::Local<v8::Object> obj = v8::Local<v8::Object>::Cast(args[2]);
       if (!obj->HasIndexedPropertiesInExternalArrayData())
         return v8_utils::ThrowError("Data must be an ArrayBuffer.");
-      int element_size = v8_typed_array::SizeOfArrayElementForType(
+      int element_size = v8_typed_array_my::SizeOfArrayElementForType(
           obj->GetIndexedPropertiesExternalArrayDataType());
       size = obj->GetIndexedPropertiesExternalArrayDataLength() * element_size;
       data = obj->GetIndexedPropertiesExternalArrayData();
@@ -3246,6 +3246,7 @@ class NSWindowWrapper {
       { "setEventCallback",
         &NSWindowWrapper::setEventCallback },
       { "setTitle", &NSWindowWrapper::setTitle },
+	  { "log", &NSWindowWrapper::log},
       { "setFrameTopLeftPoint", &NSWindowWrapper::setFrameTopLeftPoint },
       { "center", &NSWindowWrapper::center },
       { "hideCursor", &NSWindowWrapper::hideCursor },
@@ -3463,6 +3464,12 @@ class NSWindowWrapper {
     WrappedNSWindow* window = ExtractWindowPointer(args.Holder());
     v8::String::Utf8Value title(args[0]->ToString());
     [window setTitle:[NSString stringWithUTF8String:*title]];
+    return v8::Undefined();
+  }
+  static v8::Handle<v8::Value> log(const v8::Arguments& args) {
+    //v8::String::Utf8Value title(args[0]->ToString());
+	//NSLog(@"Log:: %@", @"as");
+	return v8_utils::ThrowError("CAN NOT LOG.");
     return v8::Undefined();
   }
   static v8::Handle<v8::Value> setFrameTopLeftPoint(const v8::Arguments& args) {
@@ -4536,7 +4543,7 @@ class SkCanvasWrapper {
         v8::Local<v8::Object> data = v8::Local<v8::Object>::Cast(args[1]);
         if (!data->HasIndexedPropertiesInExternalArrayData())
           return v8_utils::ThrowError("Data must be an ExternalArrayData.");
-        int element_size = v8_typed_array::SizeOfArrayElementForType(
+        int element_size = v8_typed_array_my::SizeOfArrayElementForType(
             data->GetIndexedPropertiesExternalArrayDataType());
         // FreeImage's annoying Windows types...
         DWORD size = data->GetIndexedPropertiesExternalArrayDataLength() *
@@ -6096,7 +6103,7 @@ class NSAppleScriptWrapper {
 void plask_setup_bindings(v8::Handle<v8::ObjectTemplate> obj) {
   v8::Handle<v8::Object> global(v8::Context::GetCurrent()->Global());
 
-  v8_typed_array::AttachBindings(global);
+  v8_typed_array_my::AttachBindings(global);
 
   obj->Set(v8::String::New("NSWindow"), NSWindowWrapper::GetTemplate());
   obj->Set(v8::String::New("NSEvent"), NSEventWrapper::GetTemplate());

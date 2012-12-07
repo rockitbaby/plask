@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2087026616723A2700E5796C /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087026516723A2700E5796C /* libuv.a */; };
+		2087026B16723A6C00E5796C /* libv8_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087026816723A6C00E5796C /* libv8_base.a */; };
+		2087026C16723A6C00E5796C /* libv8_nosnapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087026916723A6C00E5796C /* libv8_nosnapshot.a */; };
+		2087026D16723A6C00E5796C /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087026A16723A6C00E5796C /* libv8_snapshot.a */; };
+		2087027216723AA400E5796C /* libcares.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087026E16723AA400E5796C /* libcares.a */; };
+		2087027316723AA400E5796C /* libchrome_zlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087026F16723AA400E5796C /* libchrome_zlib.a */; };
+		2087027416723AA400E5796C /* libhttp_parser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087027016723AA400E5796C /* libhttp_parser.a */; };
+		2087027516723AA400E5796C /* libopenssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2087027116723AA400E5796C /* libopenssl.a */; };
+		2087030116724B9C00E5796C /* v8_typed_array_my.cc in Sources */ = {isa = PBXBuildFile; fileRef = 208702FC1672486000E5796C /* v8_typed_array_my.cc */; };
+		2087030216724BF400E5796C /* libnode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C561D367124FD01500CA8AF6 /* libnode.a */; };
+		208703041672567400E5796C /* plask.js in Sources */ = {isa = PBXBuildFile; fileRef = 208703031672567400E5796C /* plask.js */; };
+		208703061672590900E5796C /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = 208703051672590900E5796C /* main.js */; };
+		208703071672596800E5796C /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 208703051672590900E5796C /* main.js */; };
 		256AC3DA0F4B6AC300CF3369 /* plaskAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* plaskAppDelegate.mm */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.mm */; settings = {ATTRIBUTES = (); }; };
@@ -14,9 +27,6 @@
 		C51CAD0E133AACE900FF807C /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51CAD0D133AACE900FF807C /* Syphon.framework */; };
 		C51CAD17133AACF300FF807C /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C51CAD0D133AACE900FF807C /* Syphon.framework */; };
 		C54480A9133CDB760074124E /* Plask.icns in Resources */ = {isa = PBXBuildFile; fileRef = C54480A8133CDB760074124E /* Plask.icns */; };
-		C54F213713353048002D5B10 /* v8_typed_array.cc in Sources */ = {isa = PBXBuildFile; fileRef = C54F213513353048002D5B10 /* v8_typed_array.cc */; };
-		C561D369124FD01500CA8AF6 /* libnode.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C561D367124FD01500CA8AF6 /* libnode.a */; };
-		C561D36A124FD01500CA8AF6 /* libv8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C561D368124FD01500CA8AF6 /* libv8.a */; };
 		C5703517124FFED40082AA14 /* plask_bindings.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5703516124FFED40082AA14 /* plask_bindings.mm */; };
 		C570353B125003630082AA14 /* v8_utils.cc in Sources */ = {isa = PBXBuildFile; fileRef = C5703539125003630082AA14 /* v8_utils.cc */; };
 		C570361A1250EB5E0082AA14 /* libfreeimage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57036191250EB5E0082AA14 /* libfreeimage.framework */; };
@@ -47,6 +57,20 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		2087026516723A2700E5796C /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = deps/libuv.a; sourceTree = "<group>"; };
+		2087026816723A6C00E5796C /* libv8_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.a; path = deps/libv8_base.a; sourceTree = "<group>"; };
+		2087026916723A6C00E5796C /* libv8_nosnapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_nosnapshot.a; path = deps/libv8_nosnapshot.a; sourceTree = "<group>"; };
+		2087026A16723A6C00E5796C /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = deps/libv8_snapshot.a; sourceTree = "<group>"; };
+		2087026E16723AA400E5796C /* libcares.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcares.a; path = deps/libcares.a; sourceTree = "<group>"; };
+		2087026F16723AA400E5796C /* libchrome_zlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libchrome_zlib.a; path = deps/libchrome_zlib.a; sourceTree = "<group>"; };
+		2087027016723AA400E5796C /* libhttp_parser.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libhttp_parser.a; path = deps/libhttp_parser.a; sourceTree = "<group>"; };
+		2087027116723AA400E5796C /* libopenssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopenssl.a; path = deps/libopenssl.a; sourceTree = "<group>"; };
+		2087027B16723DF700E5796C /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = uv.h; path = deps/uv/uv.h; sourceTree = "<group>"; };
+		208702FC1672486000E5796C /* v8_typed_array_my.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = v8_typed_array_my.cc; sourceTree = "<group>"; };
+		208702FD1672486000E5796C /* v8_typed_array_my.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v8_typed_array_my.h; sourceTree = "<group>"; };
+		208702FF16724A8E00E5796C /* v8_typed_array.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = v8_typed_array.o; path = deps/v8_typed_array.o; sourceTree = "<group>"; };
+		208703031672567400E5796C /* plask.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = plask.js; sourceTree = "<group>"; };
+		208703051672590900E5796C /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		256AC3D80F4B6AC300CF3369 /* plaskAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plaskAppDelegate.h; sourceTree = "<group>"; };
 		256AC3D90F4B6AC300CF3369 /* plaskAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = plaskAppDelegate.mm; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* plask_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plask_Prefix.pch; sourceTree = "<group>"; };
@@ -57,10 +81,7 @@
 		8D1107320486CEB800E47090 /* Plask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C51CAD0D133AACE900FF807C /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Syphon.framework; path = deps/Syphon.framework; sourceTree = "<group>"; };
 		C54480A8133CDB760074124E /* Plask.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Plask.icns; sourceTree = "<group>"; };
-		C54F213513353048002D5B10 /* v8_typed_array.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = v8_typed_array.cc; sourceTree = "<group>"; };
-		C54F213613353048002D5B10 /* v8_typed_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = v8_typed_array.h; sourceTree = "<group>"; };
 		C561D367124FD01500CA8AF6 /* libnode.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnode.a; path = deps/libnode.a; sourceTree = SOURCE_ROOT; };
-		C561D368124FD01500CA8AF6 /* libv8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8.a; path = deps/libv8.a; sourceTree = SOURCE_ROOT; };
 		C5703515124FFED40082AA14 /* plask_bindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plask_bindings.h; sourceTree = "<group>"; };
 		C5703516124FFED40082AA14 /* plask_bindings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = plask_bindings.mm; sourceTree = "<group>"; };
 		C5703539125003630082AA14 /* v8_utils.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = v8_utils.cc; sourceTree = "<group>"; };
@@ -79,9 +100,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2087030216724BF400E5796C /* libnode.a in Frameworks */,
+				2087027216723AA400E5796C /* libcares.a in Frameworks */,
+				2087027316723AA400E5796C /* libchrome_zlib.a in Frameworks */,
+				2087027416723AA400E5796C /* libhttp_parser.a in Frameworks */,
+				2087027516723AA400E5796C /* libopenssl.a in Frameworks */,
+				2087026B16723A6C00E5796C /* libv8_base.a in Frameworks */,
+				2087026C16723A6C00E5796C /* libv8_nosnapshot.a in Frameworks */,
+				2087026D16723A6C00E5796C /* libv8_snapshot.a in Frameworks */,
+				2087026616723A2700E5796C /* libuv.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				C561D369124FD01500CA8AF6 /* libnode.a in Frameworks */,
-				C561D36A124FD01500CA8AF6 /* libv8.a in Frameworks */,
 				C570361A1250EB5E0082AA14 /* libfreeimage.framework in Frameworks */,
 				C5A5260B12561A2200C0F632 /* OpenGL.framework in Frameworks */,
 				C5E26D181256442500EECE59 /* libskia_opts.a in Frameworks */,
@@ -108,12 +136,21 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				208702FF16724A8E00E5796C /* v8_typed_array.o */,
+				2087027B16723DF700E5796C /* uv.h */,
+				2087026E16723AA400E5796C /* libcares.a */,
+				2087026F16723AA400E5796C /* libchrome_zlib.a */,
+				2087027016723AA400E5796C /* libhttp_parser.a */,
+				2087027116723AA400E5796C /* libopenssl.a */,
+				2087026816723A6C00E5796C /* libv8_base.a */,
+				2087026916723A6C00E5796C /* libv8_nosnapshot.a */,
+				2087026A16723A6C00E5796C /* libv8_snapshot.a */,
+				2087026516723A2700E5796C /* libuv.a */,
 				C51CAD0D133AACE900FF807C /* Syphon.framework */,
 				C5E26D161256442500EECE59 /* libskia_opts.a */,
 				C5E26D171256442500EECE59 /* libskia.a */,
 				C57036191250EB5E0082AA14 /* libfreeimage.framework */,
 				C561D367124FD01500CA8AF6 /* libnode.a */,
-				C561D368124FD01500CA8AF6 /* libv8.a */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				C5A5260A12561A2200C0F632 /* OpenGL.framework */,
 				C5C83E11140A9D78006E6DAE /* ScriptingBridge.framework */,
@@ -156,8 +193,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C54F213513353048002D5B10 /* v8_typed_array.cc */,
-				C54F213613353048002D5B10 /* v8_typed_array.h */,
+				208702FC1672486000E5796C /* v8_typed_array_my.cc */,
+				208702FD1672486000E5796C /* v8_typed_array_my.h */,
 				C5703539125003630082AA14 /* v8_utils.cc */,
 				C570353A125003630082AA14 /* v8_utils.h */,
 				C5703515124FFED40082AA14 /* plask_bindings.h */,
@@ -171,9 +208,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				208703031672567400E5796C /* plask.js */,
 				C54480A8133CDB760074124E /* Plask.icns */,
 				8D1107310486CEB800E47090 /* plask-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				208703051672590900E5796C /* main.js */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -239,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208703071672596800E5796C /* main.js in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				C54480A9133CDB760074124E /* Plask.icns in Resources */,
 			);
@@ -268,11 +308,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2087030116724B9C00E5796C /* v8_typed_array_my.cc in Sources */,
+				C570353B125003630082AA14 /* v8_utils.cc in Sources */,
 				8D11072D0486CEB800E47090 /* main.mm in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* plaskAppDelegate.mm in Sources */,
 				C5703517124FFED40082AA14 /* plask_bindings.mm in Sources */,
-				C570353B125003630082AA14 /* v8_utils.cc in Sources */,
-				C54F213713353048002D5B10 /* v8_typed_array.cc in Sources */,
+				208703041672567400E5796C /* plask.js in Sources */,
+				208703061672590900E5796C /* main.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -315,6 +357,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Plask;
+				SDKROOT = macosx10.7;
 			};
 			name = Debug;
 		};
@@ -322,7 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -340,6 +383,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Plask;
+				SDKROOT = macosx10.7;
 			};
 			name = Release;
 		};

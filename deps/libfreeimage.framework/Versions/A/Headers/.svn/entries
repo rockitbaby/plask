@@ -1,0 +1,28 @@
+8
+
+dir
+6
+https://macframeworks.googlecode.com/svn/trunk/libfreeimage/libfreeimage.framework/Versions/A/Headers
+https://macframeworks.googlecode.com/svn
+
+
+
+2009-08-13T23:04:47.529049Z
+6
+dean
+
+
+svn:special svn:externals svn:needs-lock
+
+FreeImage.h
+file
+
+
+
+
+2009-08-13T23:04:04.000000Z
+3b160db8b50088dc57b885538e492bbb
+2009-08-13T23:04:47.529049Z
+6
+dean
+

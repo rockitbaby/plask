@@ -1,0 +1,50 @@
+vars = {
+  # Use this googlecode_url variable only if there is an internal mirror for it.
+  # If you do not know, use the full path while defining your new deps entry.
+  "googlecode_url": "http://%s.googlecode.com/svn",
+  "webkit_trunk": "http://svn.webkit.org/repository/webkit/trunk",
+  "nacl_trunk": "http://src.chromium.org/native_client/trunk",
+  "webkit_revision": "68865",
+  "skia_revision": "599",
+  "chromium_git": "http://src.chromium.org/git",
+  "swig_revision": "40423",
+  "nacl_revision": "3365",
+  "libjingle_revision": "29",
+  "libvpx_revision": "60399",
+  "ffmpeg_revision": "60910",
+}
+
+deps = {
+  "src/tools/gyp":
+    (Var("googlecode_url") % "gyp") + "/trunk@840",
+
+  "src/third_party/skia/src":
+    (Var("googlecode_url") % "skia") + "/trunk/src@" + Var("skia_revision"),
+
+  "src/third_party/skia/include":
+    (Var("googlecode_url") % "skia") + "/trunk/include@" + Var("skia_revision"),
+}
+
+
+deps_os = {
+  "mac": {
+  },
+}
+
+
+include_rules = [
+]
+
+
+# checkdeps.py shouldn't check include paths for files in these dirs:
+skip_child_includes = [
+]
+
+
+hooks = [
+  {
+    # A change to a .gyp, .gypi, or to GYP itself should run the generator.
+    "pattern": ".",
+    "action": ["python", "src/build/gyp_chromium"],
+  },
+]

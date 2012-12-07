@@ -1,7 +1,7 @@
 //
 // A simple Plask example, drawing a red circle on a gray background.
 //
-
+console.log("HI");
 // Plask follows the CommonJS specification for module loading.
 var plask = require('plask');
 

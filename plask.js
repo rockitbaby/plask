@@ -529,6 +529,7 @@ exports.Window = function(width, height, opts) {
 inherits(exports.Window, events.EventEmitter);
 
 exports.simpleWindow = function(obj) {
+
   // NOTE(deanm): Moving to a settings object to reduce the pollution of the
   // main simpleWindow object.  For now fall back for compat.
   var settings = obj.settings;
@@ -577,6 +578,7 @@ exports.simpleWindow = function(obj) {
     window_.setTitle(settings.title);
 
   obj.setTitle = function(title) { window_.setTitle(title); };
+  obj.log = function(s) { window_.log(s); };
 
   if (settings.cursor === false)
     window_.hideCursor();
