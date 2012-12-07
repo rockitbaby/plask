@@ -1,3 +1,11 @@
+libuv+node09
+===
+
+This is an experimental branch to make the latest node version available
+to Plask. (Disclaimer: I never worked on that C level or have built a
+staticlibrary before.)
+
+
 Plask is a programming environment for multimedia and computational design.
 
   www.plask.org
