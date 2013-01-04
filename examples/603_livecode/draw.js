@@ -7,7 +7,7 @@ var canvas = this.canvas
 // Set the paint to fill an anti-aliased dark red.
 paint.setFill();  // Fill is the default, so this is just for clarity.
 paint.setAntiAlias(true);
-paint.setColor(209, 0, 0, 255);
+paint.setColor(200, 200, 0, 255);
 
 canvas.clear(230, 230, 230, 255);
 
